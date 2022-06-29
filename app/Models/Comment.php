@@ -21,6 +21,6 @@ class Comment extends Model
     }
 
     public function answerTo(){
-        return DB::select('SELECT * FROM `comments` LEFT JOIN `users` ON comments.author_id = users.id WHERE comments.id = ?',[$this->comment_id])[0];
+        return DB::select('SELECT * FROM `comments` LEFT JOIN `users` ON comments.author_id = users.id WHERE comments.id = ?',[$this->comment_id]);
     }
 }

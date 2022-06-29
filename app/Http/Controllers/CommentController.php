@@ -30,13 +30,13 @@ class CommentController extends Controller
         return view('profile.answer', compact('comment', 'user'));
     }
 
-    public function delete($idComment){
-        Comment::destroy($idComment);
+    public function delete($commentId){
+        Comment::destroy($commentId);
         return back();
     }
 
-    public function getHidden($idUser, $authUser){
-        $comments = User::find($idUser)->comments->skip(5);
+    public function getHidden($userId){
+        $comments = User::find($userId)->comments->skip(5);
         $views_comment = [];
 
         foreach ($comments as $comment){
