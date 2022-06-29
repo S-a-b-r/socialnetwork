@@ -60,6 +60,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{route('profile.show', auth()->user()->id)}}">Мой профиль</a>
                                     <a class="dropdown-item" href="{{route('comments.index', auth()->user()->id)}}">Мои комментарии</a>
+                                    <a class="dropdown-item" href="{{route('profile.library', auth()->user()->id)}}">Моя библиотека</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
