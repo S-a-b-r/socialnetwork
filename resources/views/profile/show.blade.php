@@ -16,23 +16,31 @@
             </form>
         @endauth
         @foreach($comments as $comment)
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{$comment->title}} (Автор: {{$comment->author->name}})</h5>
-                    <p class="card-text">{{$comment->description}}</p>
-                    <a href="#" class="card-link">Ответить</a>
-                    @auth()
-                        @if((auth()->user()->id == $comment->author->id) ||(auth()->user()->id == $comment->profile->id))
-                            <form method="post" action="{{route('comments.delete', $comment)}}">
-                                @method('delete')
-                                @csrf
-                                <button style="border: 0; background-color: rgba(1,1,1,0);" type="submit"><a class="link-danger">Удалить</a></button>
-                            </form>
-                        @endif
-                    @endauth
-                </div>
-            </div>
+            @include('inc.comment', compact('comment'))
         @endforeach
-        <a class="link-secondary" href="#">Посмотреть все комментарии</a>
+        <div id="hidden-comment-div"></div>
+        <button class="link-secondary" id="btnShowAllComment">Посмотреть все комментарии</button>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        $("#btnShowAllComment").click(function(event){
+            $.ajax({
+                url: "../api/hiddencomments/{{$user->id}}/{{auth()->user()->id}}",
+                success: function (result){
+                    let out = "";
+                    for ( let key in result[0]) {
+                        out += result[0][key];
+                    }
+                    $("#hidden-comment-div").html(out);
+
+                    $("#btnShowAllComment").hide();
+                }
+            })
+        });
+
+
+    </script>
 @endsection
+

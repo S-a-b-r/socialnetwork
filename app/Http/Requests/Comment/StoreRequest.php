@@ -26,7 +26,8 @@ class StoreRequest extends FormRequest
         return [
             'profile_id'=>'required',
             'title'=>'required|max:255',
-            'description'=>'required|max:1000'
+            'description'=>'required|max:1000',
+            'comment_id'=>'nullable'
         ];
     }
 }

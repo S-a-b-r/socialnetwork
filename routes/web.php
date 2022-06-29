@@ -21,7 +21,9 @@ Route::get('/', function () {
 });
 
 Route::prefix('comments')->controller(CommentController::class)->group(function () {
+    Route::get('/', 'index')->name('comments.index');
     Route::post('/', 'store')->name('comments.store');
+    Route::get('/{commentId}/answer', 'answer')->name('comments.answer');
     Route::delete('/{id}', 'delete')->name('comments.delete');
 });
 
