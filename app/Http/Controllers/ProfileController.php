@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $users = User::all();
         return view('profile.index', compact('users'));
     }
@@ -25,7 +26,7 @@ class ProfileController extends Controller
     public function library($userId)
     {
         $user = User::find($userId);
-        $books = Book::all()->where('author_id','=',$userId);
-        return view('profile.library', compact('books','user'));
+        $books = Book::all()->where('author_id', '=', $userId);
+        return view('profile.library', compact('books', 'user'));
     }
 }

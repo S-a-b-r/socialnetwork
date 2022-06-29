@@ -11,7 +11,8 @@ class Book extends Model
     protected $table = 'books';
     use HasFactory;
 
-    public function author(){
+    public function author()
+    {
         return $this->belongsTo(User::class);
     }
 }

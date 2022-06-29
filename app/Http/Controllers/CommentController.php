@@ -10,11 +10,13 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         $author = auth()->user()->id;
-        $comments = Comment::where('author_id','=',$author)->get();
+        $comments = Comment::where('author_id', '=', $author)->get();
         return view('comment.index', compact('comments'));
     }
+
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
@@ -24,22 +26,25 @@ class CommentController extends Controller
         return redirect()->route('profile.show', $data['profile_id']);
     }
 
-    public function answer($commentId){
+    public function answer($commentId)
+    {
         $comment = Comment::find($commentId);
         $user = $comment->author->id;
         return view('profile.answer', compact('comment', 'user'));
     }
 
-    public function delete($commentId){
+    public function delete($commentId)
+    {
         Comment::destroy($commentId);
         return back();
     }
 
-    public function getHidden($userId){
+    public function getHidden($userId)
+    {
         $comments = User::find($userId)->comments->skip(5);
         $views_comment = [];
 
-        foreach ($comments as $comment){
+        foreach ($comments as $comment) {
             $views_comment[] = view('inc.new_comment', compact('comment'))->render();
         }
         return response()->json([$views_comment]);

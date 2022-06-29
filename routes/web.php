@@ -31,10 +31,10 @@ Route::prefix('comments')->controller(CommentController::class)->group(function 
 Route::prefix('books')->controller(BookController::class)->group(function () {
     Route::get('/create', 'create')->name('books.create')->middleware('auth');
     Route::post('/', 'store')->name('books.store');
-    Route::get('/{bookId}','show')->name('books.show');
-    Route::get('/{bookId}/edit','edit')->name('books.edit');
-    Route::patch('/{bookId}','update')->name('books.update');
-    Route::delete('/{bookId}','delete')->name('books.delete');
+    Route::get('/{bookId}', 'show')->name('books.show');
+    Route::get('/{bookId}/edit', 'edit')->name('books.edit');
+    Route::patch('/{bookId}', 'update')->name('books.update');
+    Route::delete('/{bookId}', 'delete')->name('books.delete');
 });
 
 Route::prefix('/profiles')->controller(ProfileController::class)->group(function () {

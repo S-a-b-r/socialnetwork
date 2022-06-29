@@ -24,10 +24,10 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'profile_id'=>'required',
-            'title'=>'required|max:255',
-            'description'=>'required|max:1000',
-            'comment_id'=>'nullable'
+            'profile_id' => 'required',
+            'title' => 'required|max:255',
+            'description' => 'required|max:1000',
+            'comment_id' => 'nullable'
         ];
     }
 }

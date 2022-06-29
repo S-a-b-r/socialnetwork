@@ -48,6 +48,5 @@ class BookController extends Controller
         Book::destroy($bookId);
         $user = auth()->user()->id;
         return redirect()->route('profile.library', $user);
-
     }
 }
