@@ -9,7 +9,8 @@
                 <a href="{{route('books.create')}}"><button class="btn btn-outline-dark mb-4">Добавить новую книгу</button></a>
             @endif
         @endauth
-    @foreach($books as $book)
+
+        @foreach($books as $book)
             @include('inc.book', compact('book'))
         @endforeach
     </div>

@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'author_id' => 'required',
+            'author_id' => 'required|exists:users,id',
             'title' => 'required|max:255',
             'text' => 'required|max:10000',
         ];

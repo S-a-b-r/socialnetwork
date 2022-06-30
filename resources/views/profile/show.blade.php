@@ -27,7 +27,7 @@
 
         $("#btnShowAllComment").click(function(event){
             $.ajax({
-                url: "../api/hiddencomments/{{$user->id}}/{{auth()->user()->id}}",
+                url: "../api/hiddencomments/{{$user->id}}",
                 success: function (result){
                     let out = "";
                     for ( let key in result[0]) {

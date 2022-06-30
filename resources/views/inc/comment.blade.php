@@ -16,7 +16,7 @@
             @endif
         @endif
         @auth()
-        <a href="{{route('comments.answer', $comment->id)}}" class="card-link">Ответить</a>
+        <a href="{{route('comments.answer', $comment)}}" class="card-link">Ответить</a>
             @if((auth()->user()->id == $comment->author->id) ||(auth()->user()->id == $comment->profile->id))
                 <form method="post" action="{{route('comments.delete', $comment)}}">
                     @method('delete')

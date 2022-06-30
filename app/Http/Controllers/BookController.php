@@ -20,33 +20,32 @@ class BookController extends Controller
     {
         $data = $request->validated();
         $book = Book::firstOrCreate($data);
-        return redirect()->route('books.show', $book->id);
+        return redirect()->route('books.show', $book);
     }
 
-    public function show($bookId)
+    public function show(Book $book)
     {
-        $book = Book::find($bookId);
         return view('book.show', compact('book'));
     }
 
-    public function edit($bookId)
+    public function edit(Book $book)
     {
-        $book = Book::find($bookId);
         return view('book.edit', compact('book'));
     }
 
-    public function update(UpdateRequest $request, $bookId)
+    public function update(UpdateRequest $request, Book $book)
     {
         $data = $request->validated();
-        $book = Book::find($bookId);
         $book->update($data);
-        return redirect()->route('books.show', $bookId);
+        return redirect()->route('books.show', $book);
     }
 
-    public function delete($bookId)
+    public function delete(Book $book)
     {
-        Book::destroy($bookId);
-        $user = auth()->user()->id;
+        $user = auth()->user();
+        if($user->id == $book->author_id){
+            $book->delete();
+        }
         return redirect()->route('profile.library', $user);
     }
 }

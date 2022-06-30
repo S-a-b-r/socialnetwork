@@ -26,16 +26,17 @@ class CommentController extends Controller
         return redirect()->route('profile.show', $data['profile_id']);
     }
 
-    public function answer($commentId)
+    public function answer( Comment $comment)
     {
-        $comment = Comment::find($commentId);
         $user = $comment->author->id;
         return view('profile.answer', compact('comment', 'user'));
     }
 
-    public function delete($commentId)
+    public function delete(Comment $comment)
     {
-        Comment::destroy($commentId);
+        if($comment->author_id == auth()->user()->id){
+            $comment->delete();
+        }
         return back();
     }
 

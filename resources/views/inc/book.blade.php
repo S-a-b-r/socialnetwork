@@ -1,5 +1,4 @@
-<div class="container">
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header pt-3 d-flex">
             <p style="font-size: 20px">{{$book->title}}</p>
             @auth()
@@ -21,4 +20,3 @@
             <a href="{{route('books.show', $book->id)}}" class="link-secondary">Читать полностью</a>
         </div>
     </div>
-</div>

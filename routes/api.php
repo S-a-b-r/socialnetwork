@@ -18,4 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/hiddencomments/{id}/{authUser}', [\App\Http\Controllers\CommentController::class, 'getHidden']);
+Route::get('/hiddencomments/{id}', [\App\Http\Controllers\CommentController::class, 'getHidden']);
