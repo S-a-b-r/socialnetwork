@@ -43,9 +43,27 @@ class BookController extends Controller
     public function delete(Book $book)
     {
         $user = auth()->user();
-        if($user->id == $book->author_id){
+        if ($user->id == $book->author_id) {
             $book->delete();
         }
         return redirect()->route('profile.library', $user);
     }
+
+    public function makeLink(Book $book)
+    {
+        $data['access_link'] = md5(random_int(1, 1000).$book->id.$book->name);
+        $book->update($data);
+        return redirect()->back();
+    }
+
+    public function showByLink($link)
+    {
+        $book = Book::where('access_link', '=', $link)->get();
+        if (!empty($book)) {
+            $book = $book[0];
+            return view('book.show', compact('book'));
+        }
+        return abort(404);
+    }
+
 }
